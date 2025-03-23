@@ -1,0 +1,52 @@
+<div class="modal-header" @fadeSlideIn>
+  <h4 class="modal-title">Sign Up</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body" @fadeSlideIn>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username"
+        [class.is-invalid]="signupForm.get('username')?.touched && signupForm.get('username')?.errors">
+      <div class="invalid-feedback" *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.errors?.['required']"
+        @fadeIn>
+        Username is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" formControlName="email"
+        [class.is-invalid]="signupForm.get('email')?.touched && signupForm.get('email')?.errors">
+      <div class="invalid-feedback" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['required']"
+        @fadeIn>
+        Email is required
+      </div>
+      <div class="invalid-feedback" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['email']"
+        @fadeIn>
+        Please enter a valid email address
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password"
+        [class.is-invalid]="signupForm.get('password')?.touched && signupForm.get('password')?.errors">
+      <div class="invalid-feedback" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['required']"
+        @fadeIn>
+        Password is required
+      </div>
+      <div class="invalid-feedback" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['minlength']"
+        @fadeIn>
+        Password must be at least 6 characters long
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="error" @fadeIn>
+      {{error}}
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid || isLoading">
+        <span class="spinner-border spinner-border-sm me-1" *ngIf="isLoading"></span>
+        Sign Up
+      </button>
+    </div>
+  </form>
+</div>

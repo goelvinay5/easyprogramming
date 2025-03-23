@@ -1,1 +1,224 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@use 'sass:color';
+@use 'bootstrap/scss/bootstrap' as *;
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+}
+
+/* Global styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.6;
+}
+
+/* Global transition styles */
+* {
+  transition: background-color 0.2s ease-in-out, 
+              border-color 0.2s ease-in-out, 
+              box-shadow 0.2s ease-in-out;
+}
+
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #0056b3 100%);
+}
+
+/* Custom button styles */
+.btn {
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+  
+  &.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    
+    &:hover {
+      $darker-color: color.adjust(#007bff, $lightness: -10%);
+      background-color: $darker-color;
+      border-color: $darker-color;
+    }
+  }
+}
+
+/* Custom form styles */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  
+  &:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+
+/* Modal styles */
+.modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: 1px solid #eee;
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* Utility classes */
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 3rem 0;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-section {
+    text-align: center;
+  }
+}
+
+/* Material Dialog Customization */
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: white;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.login-dialog, .signup-dialog {
+  .mat-mdc-dialog-surface {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .mdc-dialog__content {
+    padding: 24px;
+  }
+
+  .mat-mdc-dialog-title {
+    padding: 24px 24px 0;
+    margin-bottom: 0;
+  }
+
+  .mat-mdc-dialog-actions {
+    padding: 8px 24px 24px;
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    margin-bottom: 1rem;
+  }
+
+  .alert {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Dropdown Menu Animation */
+.dropdown-menu {
+  animation: fadeIn 0.2s ease-in;
+  transform-origin: top right;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Interactive elements transitions */
+.btn, 
+.nav-link, 
+.dropdown-item,
+.form-control,
+.card,
+.alert {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect transitions */
+.btn:hover,
+.nav-link:hover,
+.dropdown-item:hover {
+  transform: translateY(-1px);
+}
+
+/* Active state transitions */
+.btn:active,
+.nav-link:active,
+.dropdown-item:active {
+  transform: translateY(1px);
+}
+
+/* Card hover effects */
+.card {
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Form control focus transition */
+.form-control {
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+    border-color: #80bdff;
+  }
+}
+
+/* Alert transitions */
+.alert {
+  animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

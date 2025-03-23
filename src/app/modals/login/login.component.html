@@ -1,0 +1,35 @@
+<div class="modal-header" @fadeSlideIn>
+  <h4 class="modal-title">Login</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+</div>
+<div class="modal-body" @fadeSlideIn>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input type="text" class="form-control" id="username" formControlName="username"
+        [class.is-invalid]="loginForm.get('username')?.touched && loginForm.get('username')?.errors">
+      <div class="invalid-feedback" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.errors?.['required']"
+        @fadeIn>
+        Username is required
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" formControlName="password"
+        [class.is-invalid]="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+      <div class="invalid-feedback" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']"
+        @fadeIn>
+        Password is required
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="error" @fadeIn>
+      {{error}}
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid || isLoading">
+        <span class="spinner-border spinner-border-sm me-1" *ngIf="isLoading"></span>
+        Login
+      </button>
+    </div>
+  </form>
+</div>
